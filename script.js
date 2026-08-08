@@ -84,4 +84,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.6 });
   statEls.forEach(el => statIo.observe(el));
+
+  // Bid request form: build a mailto link on submit instead of using
+  // <form method="post" action="mailto:...">, which triggers Chrome's
+  // "this form is not secure" warning even though nothing insecure happens.
+  const bidForm = document.getElementById('bidForm');
+  if (bidForm) {
+    bidForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const get = (name) => (bidForm.elements[name] && bidForm.elements[name].value.trim()) || '';
+      const name = get('Name');
+      const company = get('Company');
+      const phone = get('Phone');
+      const email = get('Email');
+      const type = get('Project Type');
+      const details = get('Details');
+
+      const subject = `Bid Request${name ? ' — ' + name : ''}`;
+      const bodyLines = [
+        `Name: ${name}`,
+        `Company: ${company}`,
+        `Phone: ${phone}`,
+        `Email: ${email}`,
+        `Project Type: ${type}`,
+        '',
+        'Project Details:',
+        details
+      ];
+      const body = bodyLines.join('\n');
+      const mailto = `mailto:psgeneral@psgeneral.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    });
+  }
 });
