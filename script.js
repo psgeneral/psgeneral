@@ -85,35 +85,52 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.6 });
   statEls.forEach(el => statIo.observe(el));
 
-  // Bid request form: build a mailto link on submit instead of using
-  // <form method="post" action="mailto:...">, which triggers Chrome's
-  // "this form is not secure" warning even though nothing insecure happens.
+  // Bid request form: submit to Formspree via fetch so the visitor gets an
+  // inline confirmation instead of leaving the page, and it lands directly
+  // in the office inbox rather than requiring the visitor's own email app.
   const bidForm = document.getElementById('bidForm');
   if (bidForm) {
-    bidForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const get = (name) => (bidForm.elements[name] && bidForm.elements[name].value.trim()) || '';
-      const name = get('Name');
-      const company = get('Company');
-      const phone = get('Phone');
-      const email = get('Email');
-      const type = get('Project Type');
-      const details = get('Details');
+    const submitBtn = document.getElementById('bidSubmitBtn');
+    const note = document.getElementById('formNote');
+    const defaultNote = note ? note.textContent : '';
 
-      const subject = `Bid Request${name ? ' — ' + name : ''}`;
-      const bodyLines = [
-        `Name: ${name}`,
-        `Company: ${company}`,
-        `Phone: ${phone}`,
-        `Email: ${email}`,
-        `Project Type: ${type}`,
-        '',
-        'Project Details:',
-        details
-      ];
-      const body = bodyLines.join('\n');
-      const mailto = `mailto:psgeneral@psgeneral.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
+    bidForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot check: if the hidden field got filled in, silently drop it.
+      const honeypot = bidForm.elements['_gotcha'];
+      if (honeypot && honeypot.value) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        const response = await fetch(bidForm.action, {
+          method: 'POST',
+          body: new FormData(bidForm),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          bidForm.reset();
+          submitBtn.textContent = 'Request Sent ✓';
+          if (note) {
+            note.textContent = "Thanks — we've received your request and will follow up shortly.";
+            note.style.color = 'var(--accent)';
+            note.style.fontWeight = '600';
+          }
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Request';
+        if (note) {
+          note.textContent = "Something went wrong — please call us directly at (347) 574-8225.";
+          note.style.color = '#c0392b';
+          note.style.fontWeight = '600';
+        }
+      }
     });
   }
 });

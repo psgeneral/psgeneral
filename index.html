@@ -396,7 +396,7 @@
         </div>
       </div>
 
-      <form class="form-card reveal" id="bidForm">
+      <form class="form-card reveal" id="bidForm" action="https://formspree.io/f/mjybgljb" method="POST">
         <div class="field-row">
           <div class="field"><label>Name</label><input type="text" name="Name" required></div>
           <div class="field"><label>Company</label><input type="text" name="Company"></div>
@@ -418,8 +418,11 @@
           <label>Project details</label>
           <textarea name="Details" rows="4" placeholder="Building type, address/borough, and general scope"></textarea>
         </div>
-        <button type="submit" class="btn btn-dark" style="width:100%;">Send Request</button>
-        <p class="form-note">Opens your email client with these details pre-filled.</p>
+        <input type="hidden" name="_subject" value="New Bid Request — psgeneral.com">
+        <!-- Honeypot field: invisible to real visitors, but bots often auto-fill it. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
+        <button type="submit" class="btn btn-dark" style="width:100%;" id="bidSubmitBtn">Send Request</button>
+        <p class="form-note" id="formNote">Sends directly to our office — we'll follow up by phone or email.</p>
       </form>
     </div>
   </div>
