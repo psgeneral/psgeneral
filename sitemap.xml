@@ -21,6 +21,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://psgeneral.com/manhattan-painting.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://psgeneral.com/manhattan-demolition.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://psgeneral.com/brooklyn.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -32,6 +42,16 @@
   </url>
   <url>
     <loc>https://psgeneral.com/brooklyn-masonry.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://psgeneral.com/brooklyn-painting.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://psgeneral.com/brooklyn-demolition.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -51,6 +71,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://psgeneral.com/queens-painting.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://psgeneral.com/queens-demolition.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://psgeneral.com/bronx.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -66,6 +96,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://psgeneral.com/bronx-painting.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://psgeneral.com/bronx-demolition.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://psgeneral.com/staten-island.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -77,6 +117,16 @@
   </url>
   <url>
     <loc>https://psgeneral.com/staten-island-masonry.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://psgeneral.com/staten-island-painting.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://psgeneral.com/staten-island-demolition.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

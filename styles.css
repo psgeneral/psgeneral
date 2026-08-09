@@ -147,19 +147,23 @@ h1, h2, h3, h4 {
   -webkit-backdrop-filter: blur(20px) saturate(1.9);
   box-shadow: 0 1px 0 var(--line);
 }
-.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .brand { display: flex; flex-direction: column; line-height: 1.1; }
+@media (min-width: 721px) {
+  .brand { flex-shrink: 0; }
+}
 .brand-name { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; }
 .brand-tag { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-top: 2px; }
 
-.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links { display: flex; align-items: center; gap: 2px; }
 .nav-links > li { position: relative; }
 .nav-links > li > a, .nav-links > li > button {
   display: flex; align-items: center; gap: 5px;
-  padding: 9px 15px;
+  padding: 9px 12px;
   border-radius: 100px;
-  font-size: 0.9rem; font-weight: 500;
+  font-size: 0.88rem; font-weight: 500;
   background: none; border: none; color: var(--ink);
+  white-space: nowrap;
   transition: background 0.2s ease;
 }
 .nav-links > li > a:hover, .nav-links > li > button:hover { background: var(--surface); }
@@ -206,6 +210,13 @@ h1, h2, h3, h4 {
 }
 .dd-sub a { font-size: 0.86rem; padding: 10px 13px; }
 .dd-sub .dd-sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); padding: 8px 13px 4px; }
+
+.dd-viewall {
+  display: block; margin-top: 4px; padding: 11px 14px !important;
+  font-size: 0.82rem !important; font-weight: 600 !important; color: var(--accent) !important;
+  border-top: 1px solid var(--line);
+}
+.dd-viewall:hover { background: var(--surface); }
 
 /* If the flyout would run off the right edge, flip it to open leftward instead */
 .dropdown.flip-left .dd-sub { left: auto; right: calc(100% + 8px); transform: translateX(-6px); }
@@ -470,3 +481,4 @@ h1, h2, h3, h4 {
 .mp-borough-group.open .mp-borough-services { max-height: 200px; }
 .mp-borough-services a { font-size: 0.95rem; font-weight: 500; color: var(--ink-soft); padding: 9px 0; border-bottom: none; }
 .mp-borough-services .mp-overview { color: var(--accent); }
+.mp-viewall { font-family: var(--font-body) !important; font-weight: 600 !important; font-size: 0.95rem !important; color: var(--accent) !important; padding: 14px 0 !important; }
