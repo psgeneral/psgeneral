@@ -20,9 +20,29 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isOpen) parent.classList.add('open');
     });
   });
+
+  // Nested borough -> service flyout (click to toggle, for touch/trackpad users)
+  document.querySelectorAll('.dd-borough > .dd-borough-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parent = link.parentElement;
+      const isOpen = parent.classList.contains('open');
+      document.querySelectorAll('.dd-borough.open').forEach(b => b.classList.remove('open'));
+      if (!isOpen) parent.classList.add('open');
+    });
+  });
+
+  // Flip flyout leftward if it would overflow the right edge of the viewport
+  document.querySelectorAll('.dropdown').forEach(dd => {
+    const rect = dd.getBoundingClientRect();
+    const wouldOverflow = rect.right + 190 > window.innerWidth;
+    if (wouldOverflow) dd.classList.add('flip-left');
+  });
+
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.nav-links > li.has-dropdown')) {
       document.querySelectorAll('.nav-links > li.open').forEach(li => li.classList.remove('open'));
+      document.querySelectorAll('.dd-borough.open').forEach(b => b.classList.remove('open'));
     }
   });
 
@@ -46,6 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Mobile borough accordion (tap borough name to reveal Roofing/Masonry links)
+  document.querySelectorAll('.mp-borough-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.parentElement;
+      const isOpen = group.classList.contains('open');
+      document.querySelectorAll('.mp-borough-group.open').forEach(g => g.classList.remove('open'));
+      if (!isOpen) group.classList.add('open');
+    });
+  });
 
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal, .reveal-stag');

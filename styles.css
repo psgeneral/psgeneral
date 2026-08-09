@@ -177,6 +177,41 @@ h1, h2, h3, h4 {
 .dropdown a:hover { background: var(--surface); color: var(--accent); }
 .dropdown .dd-current { color: var(--accent); }
 
+/* Nested borough -> service flyout */
+.dd-borough {
+  position: relative;
+}
+.dd-borough > .dd-borough-link {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 11px 14px; border-radius: 12px; font-size: 0.88rem; font-weight: 500; color: var(--ink);
+  cursor: default;
+}
+.dd-borough > .dd-borough-link .dd-arrow { width: 6px; height: 6px; border-right: 1.5px solid var(--ink-faint); border-bottom: 1.5px solid var(--ink-faint); transform: rotate(-45deg); flex-shrink: 0; }
+.dd-borough:hover > .dd-borough-link,
+.dd-borough.open > .dd-borough-link { background: var(--surface); color: var(--accent); }
+.dd-borough:hover > .dd-borough-link .dd-arrow,
+.dd-borough.open > .dd-borough-link .dd-arrow { border-color: var(--accent); }
+
+.dd-sub {
+  position: absolute; left: calc(100% + 8px); top: -10px;
+  background: #fff; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  padding: 8px; min-width: 170px;
+  opacity: 0; visibility: hidden; transform: translateX(6px);
+  transition: all 0.18s cubic-bezier(.2,.8,.2,1);
+  pointer-events: none;
+}
+.dd-borough:hover > .dd-sub,
+.dd-borough.open > .dd-sub {
+  opacity: 1; visibility: visible; transform: translateX(0); pointer-events: auto;
+}
+.dd-sub a { font-size: 0.86rem; padding: 10px 13px; }
+.dd-sub .dd-sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); padding: 8px 13px 4px; }
+
+/* If the flyout would run off the right edge, flip it to open leftward instead */
+.dropdown.flip-left .dd-sub { left: auto; right: calc(100% + 8px); transform: translateX(-6px); }
+.dropdown.flip-left .dd-borough:hover > .dd-sub,
+.dropdown.flip-left .dd-borough.open > .dd-sub { transform: translateX(0); }
+
 .nav-cta { display: flex; align-items: center; gap: 10px; }
 .nav-phone { font-size: 0.88rem; font-weight: 600; padding: 9px 12px; }
 .nav-phone .mono-label { display: block; font-size: 0.62rem; }
@@ -419,3 +454,19 @@ h1, h2, h3, h4 {
 .mobile-panel .mp-sub { padding-left: 18px; }
 .mobile-panel .mp-sub a { font-size: 1.1rem; font-weight: 600; color: var(--ink-soft); border-bottom: none; padding: 10px 0; }
 .mobile-panel .btn { margin-top: 28px; width: 100%; }
+
+/* Mobile nested borough -> service accordion */
+.mp-borough-group { border-bottom: 1px solid var(--line); }
+.mp-borough-group:last-child { border-bottom: none; }
+.mp-borough-toggle {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  background: none; border: none; text-align: left;
+  font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; color: var(--ink);
+  padding: 12px 0;
+}
+.mp-borough-toggle .dd-arrow { width: 7px; height: 7px; border-right: 2px solid var(--ink-faint); border-bottom: 2px solid var(--ink-faint); transform: rotate(45deg); transition: transform 0.2s ease; }
+.mp-borough-group.open .mp-borough-toggle .dd-arrow { transform: rotate(225deg); }
+.mp-borough-services { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; padding-left: 14px; }
+.mp-borough-group.open .mp-borough-services { max-height: 200px; }
+.mp-borough-services a { font-size: 0.95rem; font-weight: 500; color: var(--ink-soft); padding: 9px 0; border-bottom: none; }
+.mp-borough-services .mp-overview { color: var(--accent); }
