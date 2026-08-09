@@ -518,3 +518,8 @@ h1, h2, h3, h4 {
 .mp-borough-services a { font-size: 0.95rem; font-weight: 500; color: var(--ink-soft); padding: 9px 0; border-bottom: none; }
 .mp-borough-services .mp-overview { color: var(--accent); }
 .mp-viewall { font-family: var(--font-body) !important; font-weight: 600 !important; font-size: 0.95rem !important; color: var(--accent) !important; padding: 14px 0 !important; }
+
+/* --- Added: header logo mark --- */
+.brand { display: flex; flex-direction: row; align-items: center; gap: 10px; }
+.brand-logo { width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0; display: block; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
